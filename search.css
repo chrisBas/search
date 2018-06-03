@@ -1,0 +1,14 @@
+.search-results {
+    position: fixed;
+    background-color: #fff;
+    border: 1px solid #D3D3D3;
+    display: none;
+}
+.search-item{
+    padding:   3px 8%;
+}
+.search-item:hover {
+    background-color: #eaeaea;
+    color: black;
+    cursor: pointer;
+}

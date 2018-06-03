@@ -1,0 +1,28 @@
+<head>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./search.css">
+    <script src="./search.js"></script>
+</head>
+
+<body>
+    <input type="text" id="search">
+
+    <script>
+        function callBack(res) {
+            return new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    var arr = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
+                        .filter(s => s.indexOf(res) >= 0)
+                        .map(s => "<div>" + s + "</div>");
+                    resolve(arr);
+                }, 50);
+            });
+        }
+        $(document).ready(function () {
+            srch.configure("#search", callBack)
+        });
+    </script>
+</body>
