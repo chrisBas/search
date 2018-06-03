@@ -33,7 +33,7 @@ function Search() {
         }, timeout);
     }
 
-    this.configure = function (element, callback, timeout = 450) {
+    this.setup = function (element, callback, timeout = 450) {
         // error handling
         var errors = [];
         if (element == null) { errors.push("Element must be supplied."); }
