@@ -3,6 +3,7 @@ This mini js/css library enables someone to easily add search functionality to a
 
 ## Sample
 * <https://chrisbas.github.io/>
+* or download this project and open index.html
 
 ## Dependencies
 * jQuery
