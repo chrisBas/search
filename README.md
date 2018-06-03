@@ -22,14 +22,23 @@ This mini js/css library enables someone to easily add search functionality to a
 * Create a javascript function that returns a Promise, or a jquery ajax/post/get call which internally uses Promises:
 
 ```javascript
-function callback(response) {
-    return $.ajax({
-        type: "POST",
-        url: someUrl,
-        data: response,
-        success: successFunc,
-        dataType: someDataType
-    });
+function callBack(num) {
+    // CALL SOME API AND FORMAT RESPONSE (usint $.ajax(...).then(FORMAT) functionality) to an 
+        // array that can be listed in the search results
+    // The below calls a chuck norris joke api if passing in an integer > 0
+    if(parseInt(num, 10) > 0)
+        return $.get("https://api.icndb.com/jokes/random/"+num)
+            .done(function(data) {
+                console.log("Success!", data);
+            })
+            .then(function(data) {
+                return data["value"]
+                    .map(i => i["joke"]);
+            });
+    else {
+        console.error("invalid integer supplied.")
+        return Promise.resolve();
+    }
 }
 ```
 * Make sure the above defined 'successFunc' configures an array that can be added to the search menu

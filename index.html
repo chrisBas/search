@@ -8,21 +8,37 @@
 </head>
 
 <body>
-    <input type="text" id="search">
+    <input type="text" id="search" style="width:90%;">
 
     <script>
-        function callBack(res) {
-            return new Promise(function (resolve, reject) {
-                setTimeout(function () {
-                    var arr = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
-                        .filter(s => s.indexOf(res) >= 0)
-                        .map(s => "<div>" + s + "</div>");
-                    resolve(arr);
-                }, 50);
-            });
+        function callBack(num) {
+            if(parseInt(num, 10) > 0)
+                return $.get("https://api.icndb.com/jokes/random/"+num)
+                    .done(function(data) {
+                        console.log("Success!", data);
+                    })
+                    .then(function(data) {
+                        return data["value"]
+                            .map(i => i["joke"]);
+                    });
+            else {
+                console.error("invalid integer supplied.")
+                return Promise.resolve();
+            }
         }
+        // function callBack(res) {
+        //     return new Promise(function (resolve, reject) {
+        //         setTimeout(function () {
+        //             var arr = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
+        //                 .filter(s => s.indexOf(res) >= 0)
+        //                 .map(s => "<div>" + s + "</div>");
+        //             resolve(arr);
+        //         }, 50);
+        //     });
+        // }
         $(document).ready(function () {
             srch.setup("#search", callBack)
         });
+        
     </script>
 </body>
